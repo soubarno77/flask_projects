@@ -1,0 +1,25 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 40px;
+    text-align: center;
+}
+
+.error-container {
+    padding: 20px;
+    margin: 20px;
+    border-radius: 5px;
+}
+
+/* Style for 404 page */
+.error-container.error-404 {
+    background-color: #f8d7da; /* Light red */
+    border: 1px solid #f5c6cb;
+    color: #721c24; /* Dark red */
+}
+
+/* Style for 500 page */
+.error-container.error-500 {
+    background-color: #d1ecf1; /* Light blue */
+    border: 1px solid #bee5eb;
+    color: #0c5460; /* Dark blue */
+}

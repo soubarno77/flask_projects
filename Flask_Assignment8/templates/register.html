@@ -1,0 +1,26 @@
+<!-- templates/register.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Register</title>
+</head>
+<body>
+    <div class="container">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <h2>Register</h2>
+            <label for="username">Username:</label>
+            {{ form.username(class="form-control", placeholder="Choose a username") }}
+            <label for="password">Password:</label>
+            {{ form.password(class="form-control", placeholder="Choose a password") }}
+            <label for="confirm_password">Confirm Password:</label>
+            {{ form.confirm_password(class="form-control", placeholder="Confirm your password") }}
+            {{ form.submit(class="btn btn-primary") }}
+        </form>
+        <p>Already have an account? <a href="{{ url_for('login') }}">Log In</a></p>
+    </div>
+</body>
+</html>

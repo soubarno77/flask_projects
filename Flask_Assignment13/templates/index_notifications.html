@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Notifications Example</title>
+</head>
+<body>
+    <div id="notifications-container">
+        <h1>Notifications:</h1>
+        <ul id="notifications-list"></ul>
+    </div>
+
+    <form id="message-form">
+        <label for="message">Post a Message:</label>
+        <input type="text" id="message" name="message" required>
+        <button type="submit">Post</button>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var socket = io.connect('http://' + document.domain + ':' + location.port + '/notifications');
+    
+            socket.on('connect', function() {
+                console.log('Connected to the server');
+            });
+    
+            socket.on('notification', function(data) {
+                console.log('Received notification:', data);
+                $('#notifications-list').append($('<li>').text(data.message));
+            });
+    
+            $('#message-form').submit(function(event) {
+                event.preventDefault();
+                var message = $('#message').val();
+                console.log('Sending message:', message);
+                socket.emit('post_message', {'message': message});
+                $('#message').val('');
+            });
+        });
+    </script>
+</body>
+</html>

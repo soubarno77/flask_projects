@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Dynamic Greeting App</h1>
+<p>Enter your name to get a personalized greeting:</p>
+<form method="GET" action="/greet">
+    <input type="text" name="name" placeholder="Your Name">
+    <button type="submit">Greet</button>
+</form>
+{% endblock %}

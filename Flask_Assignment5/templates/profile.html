@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile - Flask User Sessions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Your Profile</h1>
+    
+    <p>Hello, {{ user.name }} ({{ user.email }})!</p>
+    <a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html>

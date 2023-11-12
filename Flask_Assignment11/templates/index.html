@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Flask-SocketIO Chat</title>
+</head>
+<body>
+    <ul id="messages"></ul>
+    <form id="form" action="">
+        <input id="message_input" autocomplete="off" /><button>Send</button>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var socket = io.connect('http://' + document.domain + ':' + location.port);
+    
+            // Get username and room
+            var username = prompt('Enter your username:');
+            var room = prompt('Enter room name:');
+    
+            // Emit join event with callback
+            socket.emit('join', {'username': username, 'room': room}, function(data) {
+                console.log(data);
+            });
+    
+            socket.on('message', function(data) {
+                $('#messages').append($('<li>').text(data.username + ': ' + data.message));
+            });
+    
+            $('form#form').submit(function(event) {
+                var message = $('#message_input').val();
+                // Emit message event with callback
+                socket.emit('message', {'username': username, 'message': message, 'room': room}, function(data) {
+                    console.log(data);
+                });
+                $('#message_input').val('');
+                return false;
+            });
+    
+            // Handle leaving the room when the user closes the tab
+            $(window).on('beforeunload', function() {
+                socket.emit('leave', {'username': username, 'room': room}, function(data) {
+                    console.log(data);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

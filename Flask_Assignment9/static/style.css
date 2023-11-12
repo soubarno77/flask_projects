@@ -1,0 +1,48 @@
+/* static/style.css */
+
+body {
+    font-family: Arial;
+  }
+  
+  #books {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+  }
+  
+  #books div {
+    border: 1px solid #ddd;
+    padding: 10px;
+  }
+
+  /* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    text-align: center;  
+  }
+  
+  .book {
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ddd;  
+  }
+  
+  .book h3 {
+    margin-top: 0;
+  }
+  
+  .actions {
+    text-align: center;
+  }
+  
+  button {
+    padding: 5px 10px;
+    border: none;
+    background: #4CAF50;
+    color: white;
+    border-radius: 5px; 
+  }

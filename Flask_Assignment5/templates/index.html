@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask User Sessions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Welcome to Flask User Sessions</h1>
+    
+    {% if 'username' in session %}
+        <p>Hello, {{ user.name }} ({{ user.email }})!</p>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    {% else %}
+        <p>You are not logged in.</p>
+        <a href="{{ url_for('login') }}">Login</a>
+    {% endif %}
+</body>
+</html>

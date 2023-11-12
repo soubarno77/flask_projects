@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Item List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Item List</h1>
+    <ul>
+        {% for item in items %}
+            <li>{{ item[1] }}</li>
+            <a href="{{ url_for('update_item', item_id=item[0]) }}" class="btn">Edit</a>
+            <a href="{{ url_for('delete_item', item_id=item[0]) }}" class="btn">Delete</a>
+        {% endfor %}
+    </ul>
+    <form method="POST" action="{{ url_for('add_item') }}">
+        <input type="text" name="item_name" placeholder="Add an item" required>
+        <input type="submit" value="Add">
+    </form>
+</body>
+</html>
